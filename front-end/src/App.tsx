@@ -25,6 +25,7 @@ import Sobre from '@/pages/Sobre';
 import Cookies from '@/pages/Cookies';
 import Configuracoes from '@/pages/Configuracoes';
 import CookieConsent from '@/components/CookieConsent';
+import ResetPassword from '@/pages/ResetPassword';
 
 
 /* --- CODE --- */
@@ -92,6 +93,7 @@ const App = () => {
               <Route path='/forgot-password' element={<ForgotPassword />} />
               <Route path='/termos' element={<Termos />} />
               <Route path='/privacidade' element={<Privacidade />} />
+              <Route path='/reset-password' element={<ResetPassword />} />
               <Route path='/sobre' element={<Sobre />} />
               <Route path='/cookies' element={<Cookies />} />
               <Route path='/configuracoes' element={<Configuracoes />} />

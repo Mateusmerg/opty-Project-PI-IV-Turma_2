@@ -123,7 +123,15 @@ export const api = {
       const response = await apiClient.post('/api/auth/login', credentials);
       return response.data;
     },
-
+    /**
+     * Request password reset e-mail
+     *
+     * @param payload - Object containing the user e-mail
+     */
+    forgotPassword: async (payload: { email: string }) => {
+      const response = await apiClient.post("/api/auth/forgot-password", payload);
+      return response.data;
+    },
 
     /**     
      * Logout the current user

@@ -1,20 +1,31 @@
+"""
+Service: forgot password (Supabase)
+"""
+
 from opty_api.app import container
-from opty_api.err.supabase_error import SupabaseError
 
 
 async def send_reset_password_email(email: str) -> None:
     """
-    Trigger Supabase password reset e-mail for a given user email.
+    Dispara o e-mail de redefinição de senha do Supabase.
+
+    O link do e-mail vai redirecionar para o front em /reset-password.
     """
+
     supabase = container["supabase_client"]
 
-    try:
-        response = await supabase.auth.reset_password_for_email(email)
+    # URL do front local
+    redirect_url = "http://localhost:5000/reset-password"
 
-        # Se a lib retornar um objeto com .error, você pode tratar aqui:
-        error = getattr(response, "error", None)
-        if error:
-            raise SupabaseError(f"[SUPABASE] Failed to send reset password email: {error.message}")
+    # Supabase Python usa reset_password_for_email
+    response = await supabase.auth.reset_password_for_email(
+        email,
+        {
+            "redirect_to": redirect_url,
+        },
+    )
 
-    except Exception as e:
-        raise SupabaseError(f"[SUPABASE] Error sending reset password email: {str(e)}") from e
+    # Se quiser, pode logar algum erro:
+    if response is not None and getattr(response, "error", None):
+        # só loga, não joga erro pra fora
+        print("[send_reset_password_email] error:", response.error)

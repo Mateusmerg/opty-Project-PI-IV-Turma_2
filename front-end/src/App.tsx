@@ -51,9 +51,9 @@ const App = () => (
             <Route 
               path='/reset-password' 
               element={
-                <GuestRoute>
-                  <ResetPassword />
-                </GuestRoute>
+                <ProtectedRoute>
+                   <ResetPassword />
+                </ProtectedRoute>
               } 
             />
             <Route

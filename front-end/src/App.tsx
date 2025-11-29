@@ -8,6 +8,8 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import GuestRoute from '@/components/GuestRoute';
 import RequireRole from '@/components/RequireRole';
+import ForgotPassword from "@/pages/ForgotPassword";
+
 
 
 /* --- PAGES IMPORTS --- */
@@ -53,6 +55,14 @@ const App = () => (
                   <ResetPassword />
                 </GuestRoute>
               } 
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <GuestRoute>
+                  <ForgotPassword />
+                </GuestRoute>
+              }
             />
             <Route
               path='/login'
